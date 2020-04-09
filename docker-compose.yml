@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  web:
+    image: dqcuong93/dockertest
+    command: "python3 manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      MYSQL_DATABASE: "storedb"
+      MYSQL_USER: "storeadmin"
+      MYSQL_PASSWORD: "P@ssw0rd"
+      MYSQL_ROOT_PASSWORD: "P@ssw0rd"
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "storedb"
+      MYSQL_USER: "storeadmin"
+      MYSQL_PASSWORD: "P@ssw0rd"
+      MYSQL_ROOT_PASSWORD: "P@ssw0rd"

@@ -1,0 +1,25 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+    Book modifying
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'books:book_modifying' book_id %}" method="post">
+        {% csrf_token %}
+        <p>
+            <label>Book title:
+                {#show the exist value of book title#}
+                <input type="text" name="book_title" value="{{ book_title }}">
+            </label>
+        </p>
+        <p>
+            <label>Book content:
+                {#show the exist value of book content#}
+                <textarea name="book_content">{{ book_content }}</textarea>
+            </label>
+        </p>
+        <hr>
+        <input type="submit" value="Click to submit">
+    </form>
+{% endblock %}

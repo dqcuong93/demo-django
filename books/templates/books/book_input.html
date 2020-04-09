@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+    Book input
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'books:book_input' %}" method="post">
+        {% csrf_token %}
+        <p><label>Book title: {{ book_form.title }}</label></p>
+        <p><label>Book content: {{ book_form.content }}</label></p>
+        <p><input type="submit" value="Click to submit"></p>
+    </form>
+{% endblock %}

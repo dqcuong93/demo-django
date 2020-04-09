@@ -1,0 +1,23 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+    List of books
+{% endblock %}
+
+{% block content %}
+    <h2>List of books</h2>
+    {% for book in  books %}
+        <hr>
+        <p>ID: {{ book.id }}</p>
+        <p>Title: {{ book.title }}</p>
+        <p>Content: {{ book.content }}</p>
+        <p>Time created: {{ book.created_at }}</p>
+        <a href="{% url 'books:book_modifying' book.id %}">Click here to modify</a>
+        <hr>
+    {% endfor %}
+
+    {#make a button acts like a link#}
+    <input type="button"
+           value="Back to index page"
+           onclick="window.location.href='{% url 'books:index' %}'">
+{% endblock %}
