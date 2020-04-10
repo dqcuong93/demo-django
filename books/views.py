@@ -45,14 +45,22 @@ class BookModifying(View):
         # get POST data
         data = request.POST
 
+        # set new book title and content
         book.title = data.get('book_title')
         book.content = data.get('book_content')
-        book.save()
         context = {
             'notification_title': 'Book modified notification',
-            'notification_content': f'Book id "{book_id}" has been modified.',
+            'notification_content': '',
         }
-        return render(request, 'books/notification.html', context=context)
+        # save to database with error checking
+        try:
+            book.save()
+        except Exception as e:
+            context['notification_content'] = f'Something wrong happened. Cannot save data with error: {e}'
+        else:
+            context['notification_content'] = f'Book id "{book_id}" has been modified'
+        finally:
+            return render(request, 'books/notification.html', context=context)
 
 
 class BookInput(View):
@@ -76,9 +84,14 @@ class BookInput(View):
 
         # if Book data valid then save into database
         if book_data.is_valid():
-            book_data.save()
-            context['notification_content'] = 'Book has been saved successfully!'
-            return render(request, 'books/notification.html', context=context)
+            try:
+                book_data.save()
+            except Exception as e:
+                context['notification_content'] = f'Something wrong, cannot save data. Error: {e}'
+            else:
+                context['notification_content'] = 'Book has been saved successfully!'
+            finally:
+                return render(request, 'books/notification.html', context=context)
         else:
             context['notification_content'] = 'Data is not valid!'
             return render(request, 'books/notification.html', context=context)

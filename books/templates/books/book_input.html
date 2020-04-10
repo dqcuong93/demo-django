@@ -9,6 +9,9 @@
         {% csrf_token %}
         <p><label>Book title: {{ book_form.title }}</label></p>
         <p><label>Book content: {{ book_form.content }}</label></p>
-        <p><input type="submit" value="Click to submit"></p>
+        <input type="submit" value="Click to submit">
     </form>
+    <input type="button"
+           value="Back to index page"
+           onclick="window.location.href='{% url 'books:index' %}'">
 {% endblock %}

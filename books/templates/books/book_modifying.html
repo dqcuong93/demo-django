@@ -22,4 +22,7 @@
         <hr>
         <input type="submit" value="Click to submit">
     </form>
+    <input type="button"
+           value="Back to index page"
+           onclick="window.location.href='{% url 'books:index' %}'">
 {% endblock %}
