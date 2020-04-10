@@ -1,8 +1,6 @@
 {% extends 'books/base.html' %}
 
-{% block title %}
-    Book input
-{% endblock %}
+{% block title %}Book input{% endblock %}
 
 {% block content %}
     <form action="{% url 'books:book_input' %}" method="post">

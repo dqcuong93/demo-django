@@ -1,8 +1,6 @@
 {% extends 'books/base.html' %}
 
-{% block title %}
-    List of books
-{% endblock %}
+{% block title %}List of books{% endblock %}
 
 {% block content %}
     <h2>List of books</h2>
@@ -12,11 +10,15 @@
         <p>Title: {{ book.title }}</p>
         <p>Content: {{ book.content }}</p>
         <p>Time created: {{ book.created_at }}</p>
-        <a href="{% url 'books:book_modifying' book.id %}">Click here to modify</a>
+        <p><a href="{% url 'books:book_modifying' book.id %}">Click here to modify</a><p>
+        <p><a href="{% url 'books:book_delete' book.id %}">Click here to delete this book</a><p>
         <hr>
     {% endfor %}
 
     {#make a button acts like a link#}
+    <input type="button"
+           value="Create a new book"
+           onclick="window.location.href='{% url 'books:book_input' %}'">
     <input type="button"
            value="Back to index page"
            onclick="window.location.href='{% url 'books:index' %}'">

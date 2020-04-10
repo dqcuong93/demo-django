@@ -7,7 +7,7 @@ from . import forms
 
 # Create your views here.
 def index_view(request):
-    return HttpResponse('YOU ARE IN THE INDEX PAGE!')
+    return render(request, 'books/index.html')
 
 
 def book_list(request):
@@ -18,6 +18,10 @@ def book_list(request):
     }
     return render(request, 'books/books_list.html', context=context)
 
+def book_delete(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    book.delete()
+    return HttpResponse(f'The book id {book_id} has been deleted')
 
 class BookModifying(View):
     def get(self, request, book_id):
