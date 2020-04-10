@@ -4,5 +4,10 @@
 
 {% block content %}
     <h1>YOU ARE IN THE INDEX PAGE</h1>
-    <a href="{% url 'books:book_list' %}">Click here to list all books</a>
+    <p>
+        <a href="{% url 'books:book_list' %}">Normal view - list all books</a>
+    </p>
+    <p>
+        <a href="{% url 'books:book_list_api' %}">API view - list all books</a>
+    </p>
 {% endblock %}

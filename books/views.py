@@ -2,6 +2,13 @@ from django.shortcuts import render
 from django.views import View
 from .models import Book
 from . import forms
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import BookSerializer
+
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -15,7 +22,7 @@ def book_list(request):
     context = {
         'books': books
     }
-    return render(request, 'books/books_list.html', context=context)
+    return render(request, 'books/book_list.html', context=context)
 
 
 def book_delete(request, book_id):
@@ -95,3 +102,25 @@ class BookInput(View):
         else:
             context['notification_content'] = 'Data is not valid!'
             return render(request, 'books/notification.html', context=context)
+
+
+"""
+API views begins here
+"""
+
+
+@api_view(['GET'])
+def book_list_api(request):
+    books = Book.objects.all()
+    serializer = BookSerializer(books, many=True)
+    return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class BookModifyingAPI(APIView):
+    def get(self, request, book_id):
+        book = Book.objects.get(pk=book_id)
+        serializer = BookSerializer(book)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, book_id):
+        return HttpResponse(f'You request a PUT method on this book id: {book_id}')

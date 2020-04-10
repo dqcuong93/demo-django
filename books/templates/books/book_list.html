@@ -17,6 +17,9 @@
         <div>
             <a href="{% url 'books:book_delete' book.id %}">Click here to delete this book</a>
         </div>
+        <div>
+            <a href="{% url 'books:book_modifying_api' book.id %}">API view this book</a>
+        </div>
         <hr>
     {% endfor %}
 
