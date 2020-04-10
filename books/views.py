@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.views import View
 from .models import Book
 from . import forms
@@ -18,10 +17,17 @@ def book_list(request):
     }
     return render(request, 'books/books_list.html', context=context)
 
+
 def book_delete(request, book_id):
+    # get book by its ID then delete it
     book = Book.objects.get(pk=book_id)
     book.delete()
-    return HttpResponse(f'The book id {book_id} has been deleted')
+    context = {
+        'notification_title': 'Book deleted notification',
+        'notification_content': f'The book id {book_id} has been deleted',
+    }
+    return render(request, 'books/notification.html', context=context)
+
 
 class BookModifying(View):
     def get(self, request, book_id):
@@ -42,8 +48,11 @@ class BookModifying(View):
         book.title = data.get('book_title')
         book.content = data.get('book_content')
         book.save()
-
-        return HttpResponse(f'Book id "{book_id}" has been modified.')
+        context = {
+            'notification_title': 'Book modified notification',
+            'notification_content': f'Book id "{book_id}" has been modified.',
+        }
+        return render(request, 'books/notification.html', context=context)
 
 
 class BookInput(View):
@@ -53,15 +62,23 @@ class BookInput(View):
         context = {
             'book_form': book_form,
         }
-
         return render(request, 'books/book_input.html', context=context)
 
     def post(self, request):
         # get POST data then parse into BookInputForm object
         book_data = forms.BookInputForm(request.POST)
+
+        # create context
+        context = {
+            'notification_title': 'Book modified notification',
+            'notification_content': '',
+        }
+
         # if Book data valid then save into database
         if book_data.is_valid():
             book_data.save()
-            return HttpResponse('Data saved!')
+            context['notification_content'] = 'Book has been saved successfully!'
+            return render(request, 'books/notification.html', context=context)
         else:
-            return HttpResponse('Data is not valid!')
+            context['notification_content'] = 'Data is not valid!'
+            return render(request, 'books/notification.html', context=context)

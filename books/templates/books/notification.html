@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+    {{ notification_title }}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        {{ notification_content }}
+    </h2>
+    <input type="button"
+           value="Back to index page"
+           onclick="window.location.href='{% url 'books:index' %}'">
+{% endblock %}
