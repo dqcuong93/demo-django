@@ -1,4 +1,6 @@
+from rest_framework.urlpatterns import format_suffix_patterns
 from django.urls import path
+
 from . import views
 
 app_name = 'books'
@@ -10,6 +12,9 @@ urlpatterns = [
     path('books/book-delete/<int:book_id>', views.book_delete, name='book_delete'),
 
     # API begins here
-    path('api/books/', views.book_list_api, name='book_list_api'),
-    path('api/books/<int:book_id>', views.BookModifyingAPI.as_view(), name='book_modifying_api'),
+    # path('api/books/', views.book_list_api, name='book_list_api'),
+    path('api/books/', views.BookListAPI.as_view(), name='book_list_api'),
+    # path('api/books/<int:book_id>', views.BookModifyingAPI.as_view(), name='book_modifying_api'),
+    # update to use generic views
+    path('api/books/<int:pk>', views.BookModifyingAPI.as_view(), name='book_modifying_api'),
 ]
