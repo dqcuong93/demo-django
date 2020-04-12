@@ -1,13 +1,48 @@
 {% extends 'books/base.html' %}
+{% load static %}
 
-{% block title %}Index page{% endblock %}
+{% block title %}
+    Index page
+{% endblock %}
 
 {% block content %}
-    <h1>YOU ARE IN THE INDEX PAGE</h1>
-    <p>
-        <a href="{% url 'books:book_list' %}">Normal view - list all books</a>
-    </p>
-    <p>
-        <a href="{% url 'books:book_list_api' %}">API view - list all books</a>
-    </p>
+    <!-- Portfolio Section Heading-->
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
+
+    <!-- Portfolio Grid Items-->
+    <div class="row">
+        <!-- Portfolio Item 1-->
+        {% include 'books/items/item_1.html' %}
+        <!-- Portfolio Item 2-->
+        {% include 'books/items/item_2.html' %}
+        <!-- Portfolio Item 3-->
+        {% include 'books/items/item_3.html' %}
+        <!-- Portfolio Item 4-->
+        {#{% include 'books/items/item_4.html' %}#}
+        <!-- Portfolio Item 5-->
+        {#{% include 'books/items/item_5.html' %}#}
+        <!-- Portfolio Item 6-->
+        {#{% include 'books/items/item_6.html' %}#}
+    </div>
+
+    <!-- Portfolio Modals-->
+    <!-- Portfolio Modal 1-->
+    {% include 'books/modals/modal_1.html' %}
+    <!-- Portfolio Modal 2-->
+    {% include 'books/modals/modal_2.html' %}
+    <!-- Portfolio Modal 3-->
+    {% include 'books/modals/modal_3.html' %}
+    <!-- Portfolio Modal 4-->
+    {#{% include 'books/modals/modal_4.html' %}#}
+    <!-- Portfolio Modal 5-->
+    {#{% include 'books/modals/modal_5.html' %}#}
+    <!-- Portfolio Modal 6-->
+    {#{% include 'books/modals/modal_6.html' %}#}
 {% endblock %}
+

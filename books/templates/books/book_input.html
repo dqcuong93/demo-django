@@ -7,11 +7,17 @@
 {% block content %}
     <form action="{% url 'books:book_input' %}" method="post">
         {% csrf_token %}
-        <p><label>Book title: {{ book_form.title }}</label></p>
-        <p><label>Book content: {{ book_form.content }}</label></p>
-        <input type="submit" value="Click to submit">
+        <div class="form-group">
+            <label for="id_title">Book title:</label>
+            {{ book_form.title }}
+        </div>
+        <div class="form-group">
+            <label for="id_content">Book content:</label>
+            {{ book_form.content }}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Click to submit">
+        <input type="button" class="btn btn-primary"
+               value="Back to index page"
+               onclick="window.location.href='{% url 'books:index' %}'">
     </form>
-    <input type="button"
-           value="Back to index page"
-           onclick="window.location.href='{% url 'books:index' %}'">
 {% endblock %}

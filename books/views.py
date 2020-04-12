@@ -1,4 +1,4 @@
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import BookSerializer
@@ -55,7 +55,7 @@ def book_delete(request, book_id):
         except Exception as e:
             context['notification_content'] = e
         else:
-            context['notification_content'] = f'The book id {book_id} has been deleted'
+            context['notification_content'] = f'The book id "{book_id}" with title "{book.title}" has been deleted'
         finally:
             return render(request, 'books/notification.html', context=context)
     else:
@@ -142,22 +142,22 @@ API views begins here
 """
 
 
-class BookListAPI(APIView):
-    def get(self, request):
-        books = get_all_book()
-        serializer = BookSerializer(books, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+# method 1 to list all books and create POST, PUT, DELETE, GET API
+# class BookListAPI(APIView):
+#     def get(self, request):
+#         books = get_all_book()
+#         serializer = BookSerializer(books, many=True)
+#         return Response(data=serializer.data, status=status.HTTP_200_OK)
+#
+#     def post(self, request):
+#         data = request.data
+#         serializer = BookSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def post(self, request):
-        data = request.data
-        serializer = BookSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-# method 1 to create PUT, DELETE, GET
 # class BookModifyingAPI(APIView):
 #     def get(self, request, book_id):
 #         book = get_book(book_id=book_id)
@@ -179,7 +179,13 @@ class BookListAPI(APIView):
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Method 2 based on generic views module, have to update the URL from 'book_id' to 'pk'
+# Method 2 based on generic views module, this way is considered most efficient and fast
+class BookListAPI(ListCreateAPIView):
+    queryset = get_all_book()
+    serializer_class = BookSerializer
+
+
+# have to update the URL from 'book_id' to 'pk'
 class BookModifyingAPI(RetrieveUpdateDestroyAPIView):
     queryset = get_all_book()
     serializer_class = BookSerializer

@@ -1,33 +1,35 @@
 {% extends 'books/base.html' %}
 
 {% block title %}
-    List of books
+    Book of list
 {% endblock %}
 
 {% block content %}
-    <h2>List of books</h2>
-    {% for book in  books %}
-        <p>ID: {{ book.id }}</p>
-        <p>Title: {{ book.title }}</p>
-        <p>Content: {{ book.content }}</p>
-        <p>Time created: {{ book.created_at }}</p>
-        <div>
-            <a href="{% url 'books:book_modifying' book.id %}">Click here to modify</a>
-        </div>
-        <div>
-            <a href="{% url 'books:book_delete' book.id %}">Click here to delete this book</a>
-        </div>
-        <div>
-            <a href="{% url 'books:book_modifying_api' book.id %}">API view this book</a>
-        </div>
-        <hr>
-    {% endfor %}
-
+    {% if books %}
+        {% for book in  books %}
+            <div class="row">
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <p><b>ID:</b> {{ book.id }}</p>
+                    <p><b>Title:</b> {{ book.title }}</p>
+                    <p><b>Content:</b> {{ book.content }}</p>
+                    <p><b>Time created:</b> {{ book.created_at }}</p>
+                </div>
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <p>---</p>
+                    <p><a href="{% url 'books:book_modifying' book.id %}">Modify this book</a></p>
+                    <p><a href="{% url 'books:book_delete' book.id %}">Delete this book</a></p>
+                    <p><a href="{% url 'books:book_modifying_api' book.id %}">Change to API view</a></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>There is no book in database yet</h3>
+    {% endif %}
     {#make a button acts like a link#}
-    <input type="button"
+    <input type="button" class="btn btn-primary"
            value="Create a new book"
            onclick="window.location.href='{% url 'books:book_input' %}'">
-    <input type="button"
-           value="Back to index page"
+    <input type="button" class="btn btn-primary"
+           value="Index page"
            onclick="window.location.href='{% url 'books:index' %}'">
 {% endblock %}
