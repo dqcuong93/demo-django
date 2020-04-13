@@ -6,20 +6,36 @@ import re
 class RegistrationForm(forms.Form):
     username = forms.CharField(
         label='Username',
-        widget=forms.TextInput,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        ),
         max_length=100,
     )
     email = forms.EmailField(
         label='Email',
-        widget=forms.EmailInput,
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control'
+            }
+        ),
     )
     password1 = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control'
+            }
+        ),
     )
     password2 = forms.CharField(
         label='Confirm password',
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
     )
 
     def clean_password2(self):
