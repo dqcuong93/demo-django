@@ -9,11 +9,30 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                                                     href="#portfolio">Portfolio</a></li>
+                                                     href="#portfolio">Content</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                                      href="#about">About</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                                      href="#contact">Contact</a></li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    {% if user.username %}
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">{{ user.username }}</a>
+                    {% else %}
+                        <div class="dropdown">
+                            <button class="btn btn-secondary py-3 px-0 px-lg-3 dropdown-toggle"
+                                    type="button" id="dropdown"
+                                    data-toggle="dropdown">
+                                ACCOUNT
+                            </button>
+                            <div class="dropdown-menu" >
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                   href="{% url 'accounts:login' %}">Login</a>
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                                   href="{% url 'accounts:registration' %}">Register</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </li>
             </ul>
         </div>
     </div>

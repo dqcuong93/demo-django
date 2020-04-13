@@ -8,7 +8,8 @@ class RegistrationForm(forms.Form):
         label='Username',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'autofocus': True
             }
         ),
         max_length=100,
