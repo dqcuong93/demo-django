@@ -2,7 +2,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Book sharing hub</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
                 type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
@@ -16,7 +16,7 @@
                                                      href="#contact">Contact</a></li>
                 <li class="nav-item mx-0 mx-lg-1">
                     {% if user.username %}
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">{{ user.username }}</a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">HI, {{ user.username }}</a>
                     {% else %}
                         <div class="dropdown">
                             <button class="btn btn-secondary py-3 px-0 px-lg-3 dropdown-toggle"
@@ -24,7 +24,7 @@
                                     data-toggle="dropdown">
                                 ACCOUNT
                             </button>
-                            <div class="dropdown-menu" >
+                            <div class="dropdown-menu">
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                                    href="{% url 'accounts:login' %}">Login</a>
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
@@ -44,7 +44,7 @@
         <img class="masthead-avatar mb-5"
              src="{% static 'books/assets/img/avataaars.svg' %}" alt=""/>
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">Cuong Dao</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -52,6 +52,6 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+        <p class="masthead-subheading font-weight-light mb-0">Backend Developer - Python - Django</p>
     </div>
 </header>

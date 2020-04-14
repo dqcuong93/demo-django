@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+    <h3>Login with your username and password</h3>
+    <br>
     <form method="post">
         {% csrf_token %}
         {% for key, value in form.errors.items %}
@@ -20,5 +22,8 @@
         </div>
         <input type="hidden" name="next" value="/">
         <input type="submit" class="btn btn-primary" value="login">
+        <input type="button" class="btn btn-primary"
+               value="Back to index page"
+               onclick="window.location.href='{% url 'books:index' %}'">
     </form>
 {% endblock %}

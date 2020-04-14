@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <h3>Provide new title and content this book: {{ book_title }}</h3>
     <form action="{% url 'books:book_modifying' book_id %}" method="post">
         {% csrf_token %}
         <div class="form-group">

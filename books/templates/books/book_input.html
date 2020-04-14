@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    <h3>Create your new book here</h3>
     <form action="{% url 'books:book_input' %}" method="post">
         {% csrf_token %}
         <div class="form-group">

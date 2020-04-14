@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+    <h3>Register you account here</h3>
+    <br>
     <form action="{% url 'accounts:registration' %}" method="post">
         {% csrf_token %}
         <div class="form-group>">
@@ -23,7 +25,11 @@
             <label for="id_password2">Confirm password:</label>
             {{ form.password2 }}
         </div>
-        <p></p>
+        <br>
         <input type="submit" class="btn btn-primary" value="Click to submit">
+        <input type="button"
+               class="btn btn-primary"
+               value="Back to index page"
+               onclick="window.location.href='{% url 'books:index' %}'">
     </form>
 {% endblock %}

@@ -1,42 +1,41 @@
 {% load static %}
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog"
-         aria-labelledby="portfolioModal3Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                </button>
-                <div class="modal-body text-center">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                                                    src="{% static 'books/assets/img/portfolio/circus.png' %}"
-                                                                    alt=""/>
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque
-                                    assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
-                                    velit
-                                    asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                <input type="button" class="btn btn-primary"
-                                       onclick="window.location.href='{% url 'books:book_list_api' %}'"
-                                       data-dismiss="modal"
-                                       value="API list all book">
-                                <button class="btn btn-primary" href="#" data-dismiss="modal"><i
-                                        class="fas fa-times fa-fw"></i>Close Window
-                                </button>
+     aria-labelledby="portfolioModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="fas fa-times"></i></span>
+            </button>
+            <div class="modal-body text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <!-- Portfolio Modal - Title-->
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">List all books with
+                                API</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
                             </div>
+                            <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
+                                                                src="{% static 'books/assets/img/portfolio/circus.png' %}"
+                                                                alt=""/>
+                            <!-- Portfolio Modal - Text-->
+                            <p class="mb-5">The system will giving out all books information through API, using the json
+                                structure file. In this API view, you can even create a new book. Give it a try!</p>
+                            <input type="button" class="btn btn-primary"
+                                   onclick="window.location.href='{% url 'books:book_list_api' %}'"
+                                   data-dismiss="modal"
+                                   value="API list all book">
+                            <button class="btn btn-primary" href="#" data-dismiss="modal"><i
+                                    class="fas fa-times fa-fw"></i>Close Window
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
