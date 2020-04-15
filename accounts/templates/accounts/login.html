@@ -21,7 +21,10 @@
             {{ form.password }}
         </div>
         <input type="hidden" name="next" value="/">
-        <input type="submit" class="btn btn-primary" value="login">
+        <input type="submit" class="btn btn-primary" value="Login">
+        <input type="submit" class="btn btn-primary"
+               value="Register an account"
+               onclick="window.location.href='{% url 'accounts:registration' %}'">
         <input type="button" class="btn btn-primary"
                value="Back to index page"
                onclick="window.location.href='{% url 'books:index' %}'">

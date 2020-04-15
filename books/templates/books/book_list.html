@@ -1,7 +1,7 @@
 {% extends 'books/base.html' %}
 
 {% block title %}
-    Book of list
+    List of books
 {% endblock %}
 
 {% block content %}
@@ -14,13 +14,15 @@
                     <p><b>ID:</b> {{ book.id }}</p>
                     <p><b>Title:</b> {{ book.title }}</p>
                     <p><b>Content:</b> {{ book.content }}</p>
+                    <p><b>User created:</b> {{ book.user }}</p>
                     <p><b>Time created:</b> {{ book.created_at }}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 mb-5">
-                    <p>---</p>
+                    <br>
                     <p><a href="{% url 'books:book_modifying' book.id %}">Modify this book</a></p>
                     <p><a href="{% url 'books:book_delete' book.id %}">Delete this book</a></p>
                     <p><a href="{% url 'books:book_modifying_api' book.id %}">Change to API view</a></p>
+                    <br>
                 </div>
             </div>
         {% endfor %}

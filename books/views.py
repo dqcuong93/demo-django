@@ -1,4 +1,6 @@
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import BookSerializer
@@ -21,7 +23,7 @@ def get_book(book_id):
 # define a function that get all books
 def get_all_book():
     try:
-        return Book.objects.all()
+        return Book.objects.select_related().all()
     except Exception as e:
         return e
 
@@ -77,6 +79,7 @@ class BookModifying(View):
         else:
             return Http404(book)
 
+    @method_decorator(login_required)
     def post(self, request, book_id):
         book = get_book(book_id=book_id)
         # get POST data
@@ -112,6 +115,7 @@ class BookInput(View):
         }
         return render(request, 'books/book_input.html', context=context)
 
+    @method_decorator(login_required)
     def post(self, request):
         # get POST data then parse into BookInputForm object
         book_data = forms.BookInputForm(request.POST)
@@ -125,9 +129,14 @@ class BookInput(View):
         # if Book data valid then save into database
         if book_data.is_valid():
             try:
-                book_data.save()
+                # create a custom processing before saving an object by using commit=False
+                book = book_data.save(commit=False)
+                # get logged in user
+                book.user = request.user
+                book.save()
             except Exception as e:
-                context['notification_content'] = f'Something wrong, cannot save data. Error: {e}'
+                context['notification_content'] = f'Something wrong, cannot save data. ' \
+                                                  f'Error: {e}'
             else:
                 context['notification_content'] = 'Book has been saved successfully!'
             finally:
