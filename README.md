@@ -28,4 +28,4 @@ To create the superuser account:
 Finally, run the server:
 - python3 manage.py runserver
 
-(Authorize by Cuong Dao).
+(Authorized by Cuong Dao).
