@@ -1,12 +1,14 @@
 # demo-django
-Demo of web app based on Django Python
-To run this Web App, first setting up an local MySQL database 
+Demo of web app based on Django Python.
+To run this Web App, first setting up an local MySQL database.
 for this app with the below information:
 - NAME: 'storedb'
 - USER: 'storeadmin'
 - PASSWORD: 'P@ssw0rd'
 - HOST: 'localhost' 
 - PORT: 3306
+
+Create a Redis server on you local machine using default settings. 
 
 Create an virtual environment in the app directory. 
 For example: pipenv, virtualenv (or use your local environment, your choice).
@@ -27,5 +29,3 @@ To create the superuser account:
 
 Finally, run the server:
 - python3 manage.py runserver
-
-(Authorized by Cuong Dao).
