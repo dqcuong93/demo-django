@@ -10,6 +10,11 @@ from django.http import Http404
 from django.views import View
 from .models import Book
 from . import forms
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+from django.conf import settings
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
 # define a function that get a book by its ID
@@ -29,11 +34,13 @@ def get_all_book():
 
 
 # Create your views here.
+@cache_page(CACHE_TTL)
 def index_view(request):
     return render(request, 'books/index.html')
 
 
 # show all books in DB
+@cache_page(CACHE_TTL)
 def book_list(request):
     # get all books from DB by call get all books function
     books = get_all_book()

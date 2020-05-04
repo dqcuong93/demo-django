@@ -16,6 +16,10 @@ class DBTest(TaskSet):
     def get_all_book(self):
         self.client.get('http://localhost:8000/books/')
 
+    @task(3)
+    def api_get_all_book(self):
+        self.client.get('http://localhost:8000/api/books/')
+
 
 class Test(HttpLocust):
     task_set = DBTest
