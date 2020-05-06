@@ -81,8 +81,13 @@ DATABASES = {
         'NAME': 'storedb',
         'USER': 'storeadmin',
         'PASSWORD': 'P@ssw0rd',
-        'HOST': 'localhost',  # connect to the local MySQL DB for testing only
-        # 'HOST': 'db',  # connect to the MySQL DB image
+
+        # connect to the local MySQL DB - Local machine configuration
+        # 'HOST': 'localhost',
+
+        # connect to the MySQL DB image - Redis configuration
+        'HOST': 'db',
+
         'PORT': 3306,
     }
 }
@@ -109,7 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+
+        # local redis configuration
+        # "LOCATION": "redis://127.0.0.1:6379/1",
+
+        # docker redis configuration
+        "LOCATION": "redis://redis:6379/0",
+
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -118,13 +129,21 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-# declare this for debug tool bar
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-
 # Cache time to live is 15 minutes.
 CACHE_TTL = 60 * 15
+
+# declare this for debug tool bar
+INTERNAL_IPS = ('127.0.0.1',)
+
+
+# add these lines of code to make tool bar works for docker
+def show_toolbar(request):
+    return True
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
