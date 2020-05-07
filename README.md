@@ -1,6 +1,9 @@
 # demo-django
-Demo of web app based on Django Python.
-To run this Web App, first setting up an local MySQL database.
+
+##Demo of a Web-App based on Django Python.
+
+###IF YOU PULL THIS SOURCE USING GITHUB
+To run this Web-App, first setting up an local MySQL database.
 for this app with the below information:
 - NAME: 'storedb'
 - USER: 'storeadmin'
@@ -29,3 +32,12 @@ To create the superuser account:
 
 Finally, run the server:
 - python3 manage.py runserver
+
+###IF YOU PULL THIS SOURCE USING DOCKER
+To run this Web-App, pull this file: https://github.com/dqcuong93/demo-django/blob/master/docker-compose.yml.
+
+In your docker-compose.yml directory, run this command to create the super user account:
+- docker-compose run web python3 manage.py createsuperuser.
+
+Execute this command to start Web-App:
+- docker-compose up 
