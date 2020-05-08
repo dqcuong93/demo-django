@@ -83,10 +83,10 @@ DATABASES = {
         'PASSWORD': 'P@ssw0rd',
 
         # connect to the local MySQL DB - Local machine configuration
-        # 'HOST': 'localhost',
+        'HOST': 'localhost',
 
         # connect to the MySQL DB image - Redis configuration
-        'HOST': 'db',
+        # 'HOST': 'db',
 
         'PORT': 3306,
     }
@@ -116,10 +116,10 @@ CACHES = {
         "BACKEND": "django_redis.cache.RedisCache",
 
         # local redis configuration
-        # "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://127.0.0.1:6379/1",
 
         # docker redis configuration
-        "LOCATION": "redis://redis:6379/0",
+        # "LOCATION": "redis://redis:6379/0",
 
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
