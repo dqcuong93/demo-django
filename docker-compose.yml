@@ -3,14 +3,19 @@ version: "3"
 services:
   web:
     image: dqcuong93/dockertest
+    container_name: web
     command: >
       sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     depends_on:
       - db
+      - redis
+      - es
     links:
       - db
+      - redis
+      - es:es
     environment:
       MYSQL_DATABASE: "storedb"
       MYSQL_USER: "storeadmin"
@@ -19,6 +24,7 @@ services:
     restart: always
   db:
     image: mysql:5.7
+    container_name: database
     ports:
       - "3306:3306"
     environment:
@@ -29,6 +35,17 @@ services:
     restart: always
   redis:
     image: redis
+    container_name: redis
     restart: always
     ports:
       - "6379:6379"
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: always

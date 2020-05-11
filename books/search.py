@@ -3,7 +3,12 @@ from elasticsearch.helpers import bulk
 from elasticsearch import Elasticsearch
 from . import models
 
-connections.create_connection()
+# use for redis
+# connections.create_connection(hosts=['elasticsearch:9200'], timeout=20)
+
+
+# use for local
+connections.create_connection(hosts=['localhost'], timeout=20)
 
 
 class BookIndex(Document):

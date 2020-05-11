@@ -34,10 +34,15 @@ Finally, run the server:
 - python3 manage.py runserver
 
 ###IF YOU PULL THIS SOURCE USING DOCKER
+First pull this resource by running this command: 
+- docker pull dqcuong93/dockertest.
+
 To run this Web-App, pull this file: https://github.com/dqcuong93/demo-django/blob/master/docker-compose.yml.
 
 In your docker-compose.yml directory, run this command to create the super user account:
 - docker-compose run web python3 manage.py createsuperuser.
 
-Execute this command to start Web-App:
+Continue to create super user.
+
+Then, Execute this command to start Web-App:
 - docker-compose up 
