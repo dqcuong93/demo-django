@@ -55,7 +55,7 @@ def get_all_book():
 
 
 # Create your views here.
-# @cache_page(CACHE_TTL)
+@cache_page(CACHE_TTL)
 def index_view(request):
     return render(request, 'books/index.html')
 
