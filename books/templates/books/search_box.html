@@ -1,0 +1,7 @@
+<form action="{% url 'books:book_search_result' %}" method="get">
+    <div class="form-group" >
+        <label class="label-info" for="search_content">Search anything you like:</label>
+        <input class="form-control" type="search" name="search_words" id="search_content">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Search">
+</form>

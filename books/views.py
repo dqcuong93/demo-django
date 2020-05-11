@@ -6,15 +6,36 @@ from rest_framework.views import APIView
 from .serializers import BookSerializer
 from django.shortcuts import render
 from rest_framework import status
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.views import View
 from .models import Book
 from . import forms
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.views.decorators.cache import cache_page
 from django.conf import settings
+from . import search as s
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
+
+# define a search function
+def book_search(request):
+    search_words = request.GET.get('search_words')
+    hits = s.search(search_words)
+    books = []
+    for hit in hits:
+        books.append(
+            {
+                'title': hit.title,
+                'content': hit.content,
+                'created_at': hit.created_at,
+                'user': hit.user,
+            }
+        )
+    context = {
+        'books': books,
+    }
+    return render(request, 'books/search_result.html', context=context)
 
 
 # define a function that get a book by its ID
@@ -34,7 +55,7 @@ def get_all_book():
 
 
 # Create your views here.
-@cache_page(CACHE_TTL)
+# @cache_page(CACHE_TTL)
 def index_view(request):
     return render(request, 'books/index.html')
 

@@ -1,0 +1,28 @@
+{% extends 'books/base.html' %}
+
+{% block title %}
+    Search results
+{% endblock %}
+
+{% block content %}
+    <h3>Your search results appear here</h3>
+    <br>
+    {% if books %}
+        {% for book in books %}
+            <div class="row">
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <p><b>Title:</b> {{ book.title }}</p>
+                    <p><b>Content:</b> {{ book.content }}</p>
+                    <p><b>User created:</b> {{ book.user }}</p>
+                    <p><b>Time created:</b> {{ book.created_at }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h3>No result found</h3>
+    {% endif %}
+    {#make a button acts like a link#}
+    <input type="button" class="btn btn-primary"
+           value="Back to index page"
+           onclick="window.location.href='{% url 'books:index' %}'">
+{% endblock %}

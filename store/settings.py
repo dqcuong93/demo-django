@@ -129,8 +129,8 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-# Cache time to live is 15 minutes.
-CACHE_TTL = 60 * 15
+# Cache time to live is 3 minutes.
+CACHE_TTL = 60 * 3
 
 # declare this for debug tool bar
 INTERNAL_IPS = ('127.0.0.1',)

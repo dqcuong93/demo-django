@@ -27,7 +27,12 @@ def bulk_indexing():
     )
 
 
-def search(user):
-    s = Search().filter('term', user=user)
+# search function using ElasticSearch: search all fields in DB exclude "created_at" field
+def search(content):
+    s = Search().query("multi_match", query=content,
+                       fields=[
+                           'title',
+                           'content',
+                           'user'])
     response = s.execute()
     return response

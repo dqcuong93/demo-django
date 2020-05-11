@@ -14,6 +14,7 @@ urlpatterns = [
     path('books/book-input', views.BookInput.as_view(), name='book_input'),
     path('books/<int:book_id>', views.BookModifying.as_view(), name='book_modifying'),
     path('books/book-delete/<int:book_id>', views.book_delete, name='book_delete'),
+    path('books/search', views.book_search, name='book_search_result'),
 
     # API begins here
     # path('api/books/', views.BookListAPI.as_view(), name='book_list_api'),
