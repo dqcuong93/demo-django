@@ -23,7 +23,13 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 # define a search function
 def book_search(request):
     search_words = request.GET.get('search_words')
+
+    # Local machine setup
     producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+
+    # Docker machine setup
+    # producer = KafkaProducer(bootstrap_servers=['kafka:9092'])
+
     content = bytes(search_words, encoding='utf8')
 
     # Asynchronous by default
@@ -34,7 +40,7 @@ def book_search(request):
 
     # none Kafka
     # hits = s.search(search_words)
-    
+
     books = []
     for hit in hits:
         books.append(

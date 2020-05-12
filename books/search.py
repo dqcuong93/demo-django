@@ -4,11 +4,11 @@ from elasticsearch import Elasticsearch
 from . import models
 from kafka import KafkaConsumer
 
-# use for redis
+# use for Docker ElasticSearch
 # connections.create_connection(hosts=['elasticsearch:9200'], timeout=20)
 
 
-# use for local
+# use for local ElasticSearch
 connections.create_connection(hosts=['localhost'], timeout=20)
 
 
@@ -56,7 +56,13 @@ def search():
     content = ''
     consumer = KafkaConsumer('store',
                              group_id='store-group',
+
+                             # local machine setup
                              bootstrap_servers=['localhost:9092'],
+
+                             # Docker setup
+                             # bootstrap_servers=['kafka:9092'],
+
                              consumer_timeout_ms=1000)
     for message in consumer:
         content = message.value.decode('utf-8')
