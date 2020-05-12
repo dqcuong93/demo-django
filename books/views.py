@@ -14,6 +14,8 @@ from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.views.decorators.cache import cache_page
 from django.conf import settings
 from . import search as s
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -21,7 +23,18 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 # define a search function
 def book_search(request):
     search_words = request.GET.get('search_words')
-    hits = s.search(search_words)
+    producer = KafkaProducer(bootstrap_servers=['localhost:9092'])
+    content = bytes(search_words, encoding='utf8')
+
+    # Asynchronous by default
+    producer.send('store', content)
+
+    # Kafka
+    hits = s.search()
+
+    # none Kafka
+    # hits = s.search(search_words)
+    
     books = []
     for hit in hits:
         books.append(

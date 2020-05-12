@@ -2,6 +2,7 @@ from elasticsearch_dsl import Document, Text, Date, Search, connections
 from elasticsearch.helpers import bulk
 from elasticsearch import Elasticsearch
 from . import models
+from kafka import KafkaConsumer
 
 # use for redis
 # connections.create_connection(hosts=['elasticsearch:9200'], timeout=20)
@@ -32,12 +33,39 @@ def bulk_indexing():
     )
 
 
+# def search(content):
+# """
 # search function using ElasticSearch: search all fields in DB exclude "created_at" field
-def search(content):
+# """
+#     s = Search().query("multi_match", query=content,
+#                        fields=[
+#                            'title',
+#                            'content',
+#                            'user'])
+#     response = s.execute()
+#     return response
+
+
+def search():
+    """
+    search function using ElasticSearch: search all fields in DB exclude "created_at" field
+    this function communicated through Kafka
+    """
+
+    # To consume latest messages and auto-commit offsets
+    content = ''
+    consumer = KafkaConsumer('store',
+                             group_id='store-group',
+                             bootstrap_servers=['localhost:9092'],
+                             consumer_timeout_ms=1000)
+    for message in consumer:
+        content = message.value.decode('utf-8')
+    consumer.close()
     s = Search().query("multi_match", query=content,
                        fields=[
                            'title',
                            'content',
-                           'user'])
+                           'user'
+                       ])
     response = s.execute()
     return response

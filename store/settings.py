@@ -85,7 +85,7 @@ DATABASES = {
         # connect to the local MySQL DB - Local machine configuration
         'HOST': 'localhost',
 
-        # connect to the MySQL DB image - Redis configuration
+        # connect to the MySQL DB image - Docker configuration
         # 'HOST': 'db',
 
         'PORT': 3306,
