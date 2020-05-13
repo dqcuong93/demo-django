@@ -2,6 +2,14 @@
 
 ##Demo of a Web-App based on Django Python.
 
+###LIST OF SERVICES/ LOCAL SERVER OF SERVICES
+On MacOS install by brew
+- elasticsearch-full       
+- kafka                    
+- mysql                    
+- redis                    
+- zookeeper
+          
 ###IF YOU PULL THIS SOURCE USING GITHUB
 To run this Web-App, first setting up an local MySQL database.
 for this app with the below information:
@@ -9,9 +17,7 @@ for this app with the below information:
 - USER: 'storeadmin'
 - PASSWORD: 'P@ssw0rd'
 - HOST: 'localhost' 
-- PORT: 3306
-
-Create a Redis server on you local machine using default settings. 
+- PORT: 3306 
 
 Create an virtual environment in the app directory. 
 For example: pipenv, virtualenv (or use your local environment, your choice).
