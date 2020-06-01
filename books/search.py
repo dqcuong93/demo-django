@@ -75,3 +75,8 @@ def search():
                        ])
     response = s.execute()
     return response
+
+
+def delete_document(book_id):
+    s = Search(index='book-index').query('match', index__id=book_id)
+    s.delete()

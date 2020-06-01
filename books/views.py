@@ -100,6 +100,7 @@ def book_delete(request, book_id):
             'notification_content': '',
         }
         try:
+            s.delete_document(book_id)
             book.delete()
         except Exception as e:
             context['notification_content'] = e
