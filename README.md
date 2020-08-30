@@ -1,18 +1,16 @@
 # demo-django
+Demo of a Web-App based on Django Python technology.
 
-##Demo of a Web-App based on Django Python.
-
-###LIST OF SERVICES/ LOCAL SERVER OF SERVICES
-On MacOS install by brew
+##LIST OF SERVICES/ LOCAL SERVER OF SERVICES
+On MacOS install by HomeBrew then install:
 - elasticsearch-full       
 - kafka                    
 - mysql                    
 - redis                    
 - zookeeper
           
-###IF YOU PULL THIS SOURCE USING GITHUB
-To run this Web-App, first setting up an local MySQL database.
-for this app with the below information:
+##IF YOU PULL THIS SOURCE USING GITHUB
+To run this Web-App, first setting up an local MySQL database for this app with the below information:
 - NAME: 'storedb'
 - USER: 'storeadmin'
 - PASSWORD: 'P@ssw0rd'
@@ -20,6 +18,7 @@ for this app with the below information:
 - PORT: 3306 
 
 Create an virtual environment in the app directory. 
+
 For example: pipenv, virtualenv (or use your local environment, your choice).
 Install all the packages in the requirements.txt file. 
 After that, in your app directory run these line of command.
@@ -39,7 +38,7 @@ To create the superuser account:
 Finally, run the server:
 - python3 manage.py runserver
 
-###IF YOU PULL THIS SOURCE USING DOCKER
+##IF YOU PULL THIS SOURCE USING DOCKER
 First pull this resource by running this command: 
 - docker pull dqcuong93/dockertest.
 
@@ -52,3 +51,10 @@ Continue to create super user.
 
 Then, Execute this command to start Web-App:
 - docker-compose up 
+
+## Contributor
+Author: Chris Dao (dqcuong93@gmail.com)
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate
